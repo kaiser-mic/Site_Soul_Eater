@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #1A1A2D;
+}
+header{
+    height: 70vh;
+    width: 100%;
+    background-color: #1A1A2D;
+    /* box-shadow: #FF4500 0 0 10px 2px; */
+}
+header div{
+    height: 85%;
+    width: 100%;
+    background-image: url(../imagens/banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+header div div{
+    height: 100%;
+    width: 100%;
+    background-image: url(../imagens/fogo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+}
+header nav{
+    width: 100%;
+    height: 15%;
+    background-color: #FF4500;
+}
+main{
+    padding: 10px 0 0 0;
+    height: 50vw;
+    width: 100%;
+}
+main article{
+    margin-top: 3vh;
+    height: auto;
+    width: 95%;
+    padding: 1vh 2vh 5vh 2vh;
+    margin:2vh auto 0 auto;
+    background-color: #2D2D44;
+    text-align: center;
+}
+main article div section h2{
+    font-family: "Eater", serif;
+    height: 12.5%;
+    width: 100%;
+    background-color: #2D2D44;
+    font-weight: 400;
+    font-style: normal;
+    margin: auto 0;
+    color: #EAEAF2;
+}
+main article div{
+    width: 100%;
+    height: auto;
+    margin-top: 1vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 5vh;
+}
+main article div section{
+    height: 60vh;
+    width: 60vh;
+    background-color: #1A1A2D;
+}
