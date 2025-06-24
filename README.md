@@ -15,3 +15,4 @@ RNF_001: O site deve ser desenvolvido prinicipalemente em JavaScript </br>
 RNF_002: As fichas devem ser criadas em format JSON </br>
 RNF_003: O banco de dados usado será o MySQL </br>
 RNF_004: O site deve ter cores condizentes com o universo </br>
+RNF_005: O site deve seguir os principios RESTful
