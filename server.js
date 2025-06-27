@@ -1,6 +1,7 @@
 const express = require('express');
 const knex = require('knex');
 const errors = require('http-errors');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -27,3 +28,47 @@ app.get("/" , (req, res) => {
 app.listen( PORT , () =>{
     console.log( `site executando em: http://localhost:${PORT}` )
 } )
+
+app.post('/register', async (req, res, ) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: 'usuario e senha sao necessarios' });
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await conn('usuarios').insert({ username, password: hashedPassword });
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+);
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: 'usuario e senha sao necessarios' });
+    }
+
+    try {
+        const user = await conn('usuarios').where({ username }).first();
+        if (!user) {
+            return res.status(401).json({ error: 'Usuario ou senha invalidos' });
+        }
+
+        const senhaCorreta = await bcrypt.compare(password, user.password);
+        if (!senhaCorreta) {
+            return res.status(401).json({ error: 'Usuario ou senha invalidos' });
+        }
+
+        res.json({ message: 'Login bem sucedido' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+);
