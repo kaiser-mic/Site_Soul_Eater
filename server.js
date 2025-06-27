@@ -39,10 +39,10 @@ app.post('/register', async (req, res, ) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         await conn('usuarios').insert({ username, password: hashedPassword });
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'usuario registrado com sucesso' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'erro interno no servidor' });
     }
 }
 );
@@ -68,7 +68,7 @@ app.post('/login', async (req, res) => {
         res.json({ message: 'Login bem sucedido' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'erro interno do servidor' });
     }
 }
 );
