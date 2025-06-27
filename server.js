@@ -14,7 +14,7 @@ const hostname = 'localhost';
 const conn = knex({
   client: 'mysql2',
   connection: {
-    host: 'hostname',
+    host: hostname,
     user: 'root',
     password: '',
     database: 'site_rpg'
@@ -29,16 +29,16 @@ app.listen( PORT , () =>{
     console.log( `site executando em: http://localhost:${PORT}` )
 } )
 
-app.post('/register', async (req, res, ) => {
-    const { username, password } = req.body;
+app.post('/registrar', async (req, res, ) => {
+    const { usuario, senha } = req.body;
 
-    if (!username || !password) {
+    if (!usuario || !senha) {
         return res.status(400).json({ error: 'usuario e senha sao necessarios' });
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        await conn('usuarios').insert({ username, password: hashedPassword });
+        const hashedPassword = await bcrypt.hash(senha, 10);
+        await conn('usuarios').insert({ usuario, senha: hashedPassword });
         res.status(201).json({ message: 'usuario registrado com sucesso' });
     } catch (error) {
         console.error(error);
@@ -48,19 +48,19 @@ app.post('/register', async (req, res, ) => {
 );
 
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { usuario, senha } = req.body;
 
-    if (!username || !password) {
+    if (!usuario || !senha) {
         return res.status(400).json({ error: 'usuario e senha sao necessarios' });
     }
 
     try {
-        const user = await conn('usuarios').where({ username }).first();
-        if (!user) {
+        const usuarioDoBanco = await conn('usuarios').where({ usuario: usuario }).first();
+        if (!usuarioDoBanco) {
             return res.status(401).json({ error: 'Usuario ou senha invalidos' });
         }
 
-        const senhaCorreta = await bcrypt.compare(password, user.password);
+        const senhaCorreta = await bcrypt.compare(senha, usuarioDoBanco.senha);
         if (!senhaCorreta) {
             return res.status(401).json({ error: 'Usuario ou senha invalidos' });
         }
