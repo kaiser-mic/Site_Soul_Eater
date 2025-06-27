@@ -1,7 +1,7 @@
 # Site_Soul_Eater
 Requisitos Funcionais: </br>
 RF_001: O site deve permitir o download do livro de regras <br/>
-RF_002: O site deve permitir o login </br> ✅
+RF_002: O site deve permitir o login ✅ </br> 
 RF_003: O site deve permitir a criação de fichas novas  </br>
 RF_004: O site deve permitir a importação de fichas externas  </br>
 RF_005: O site deve permitir a realização de alteração nas fichas] </br>
