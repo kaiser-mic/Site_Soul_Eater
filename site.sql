@@ -1,10 +1,12 @@
 create database site_rpg; 
 use site_rpg;
-create table usuarios(
-		id int primary Key AUTO_INCREMENT,
-        nome varchar(100) NOT NULL,
-        email varchar(150) NOT NULL,
-        senha varchar(15) NOT NULL);
+
+
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario VARCHAR(100) NOT NULL UNIQUE, 
+    senha VARCHAR(255) NOT NULL     
+);
 
 create table fichas(
 	id int PRIMARY KEY auto_increment,
@@ -47,4 +49,7 @@ create table fichas(
 	
     foreign key (id_usuario) references usuarios(id)
 );
-select * from fichas;
+select * from usuarios;
+use site_rpg;
+
+drop database site_rpg;
