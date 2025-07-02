@@ -18,6 +18,27 @@ header div{
     align-items: center;
     flex-direction: column;
 }
+header div button{
+    width: 200px;
+    height: 50px;
+    background-color: #feb403;
+    border: none;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: #1A1A2D;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+div button a{
+    text-decoration: none;
+    font-weight: 700;
+    color: #1A1A2D;
+}
+div button:hover{
+    background-color: #971723;
+}
 header div div{
     width: 40%;
     margin: 0 auto;
