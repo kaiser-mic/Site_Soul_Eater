@@ -16,7 +16,7 @@ function registrar(){
     ajax.send("usuario=" + nome + "&email=" + email + "&senha=" + senha)
 }
 function login(){
-    var usuario = document.getElementById("login_usuario").value
+    var usuario = document.getElementById("login_nome").value
     var senha = document.getElementById("login_senha").value
     
     var ajax = new XMLHttpRequest()
