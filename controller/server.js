@@ -3,7 +3,11 @@ const knex = require('knex');
 const errors = require('http-errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+const path = require ('path');
 
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
+console.log('O valor da chave secreta é:', process.env.JWT_SECRET);
 const app = express();
 
 app.use(express.json());
@@ -69,7 +73,7 @@ app.post('/login', async (req, res) => {
             id: usuarioDoBanco.id,
             usuario: usuarioDoBanco.usuario
         }
-        const token = JsonWebTokenError.sign(
+        const token = jwt.sign(
             payload,
             process.env.JWT_SECRET,
             {
@@ -83,3 +87,4 @@ app.post('/login', async (req, res) => {
     }
 }
 );
+
