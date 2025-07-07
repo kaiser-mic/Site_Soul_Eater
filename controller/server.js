@@ -8,6 +8,7 @@ const path = require ('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 console.log('O valor da chave secreta é:', process.env.JWT_SECRET);
+
 const app = express();
 
 app.use(express.json());
@@ -35,7 +36,7 @@ app.listen( PORT , () =>{
 } )
 
 app.post('/registrar', async (req, res, ) => {
-    const { usuario, senha } = req.body;
+    const { usuario, email, senha } = req.body;
 
     if (!usuario || !senha) {
         return res.status(400).json({ error: 'usuario e senha sao necessarios' });
@@ -43,7 +44,7 @@ app.post('/registrar', async (req, res, ) => {
 
     try {
         const hashedPassword = await bcrypt.hash(senha, 10);
-        await conn('usuarios').insert({ usuario, senha: hashedPassword });
+        await conn('usuarios').insert({ usuario, email, senha: hashedPassword });
         res.status(201).json({ message: 'usuario registrado com sucesso' });
     } catch (error) {
         console.error(error);
@@ -81,10 +82,11 @@ app.post('/login', async (req, res) => {
             }
         )
         res.json({ message: 'Login bem-sucedido', token: token });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'erro interno do servidor' });
     }
+    
 }
 );
-
