@@ -2,6 +2,7 @@ const express = require('express');
 const knex = require('knex');
 const errors = require('http-errors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const app = express();
 
@@ -64,8 +65,18 @@ app.post('/login', async (req, res) => {
         if (!senhaCorreta) {
             return res.status(401).json({ error: 'Usuario ou senha invalidos' });
         }
-
-        res.json({ message: 'Login bem sucedido' });
+        const payload ={
+            id: usuarioDoBanco.id,
+            usuario: usuarioDoBanco.usuario
+        }
+        const token = JsonWebTokenError.sign(
+            payload,
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '1h'
+            }
+        )
+        res.json({ message: 'Login bem-sucedido', token: token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'erro interno do servidor' });
