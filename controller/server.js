@@ -4,6 +4,7 @@ const errors = require('http-errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const path = require ('path');
+const cors = require('cors');
 
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
@@ -11,6 +12,7 @@ console.log('O valor da chave secreta é:', process.env.JWT_SECRET);
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

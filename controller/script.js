@@ -15,7 +15,9 @@ function registrar(){
             "application/x-www-form-urlencoded")
     ajax.send("usuario=" + nome + "&email=" + email + "&senha=" + senha)
 }
-function login() {
+function login(event) {
+    event.preventDefault();
+
     var usuario = document.getElementById("login_nome").value;
     var senha = document.getElementById("login_senha").value;
 
