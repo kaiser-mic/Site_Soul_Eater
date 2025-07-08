@@ -8,7 +8,7 @@ RF_005: O site deve permitir a realização de alteração nas fichas] </br>
 RF_006: O site deve salvar as fichas no banco de dados  </br>
 RF_007 O site deve mostrar as fichas salvas quando o login for feito </br>
 RF_008: O site deve permitir o login usando oAuth  </br>
-RF_009:  O site deve ser responsivo  </br>
+RF_009:  O site deve ser responsivo ✅  </br>
  </br>
 Requisitos Não Funcionais: </br>
 RNF_001: O site deve ser desenvolvido prinicipalemente em JavaScript </br>
