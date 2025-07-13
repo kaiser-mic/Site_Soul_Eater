@@ -92,3 +92,22 @@ app.post('/login', async (req, res) => {
     
 }
 );
+
+
+app.post('/criar-personagem', async (req, res) => {
+    const {id_usuario, nome, aparencia, personalidade, historia, weapon_form, forca, destreza, constituicao, inteligencia, sabedoria, carisma, atletismo, furtividade, vigor,
+            medicina, sobrevivencia, performance, intimidacao, prestidigitacao, conhecimento, percepcao, persuasao, acrobacia, resistencia, investigacao, intuicao, enganacao,
+            habilidade, nivel_resonancia, sanidade, vida, tipo} = req.body;
+        if (!id_usuario){
+            return res.status(400).json({ error: 'Voce precisa estar logado' });
+        }
+        try {
+        await conn('fichas').insert({ id_usuario, nome, aparencia, personalidade, historia, weapon_form, forca, destreza, constituicao, inteligencia, sabedoria, carisma, atletismo, furtividade, vigor,
+            medicina, sobrevivencia, performance, intimidacao, prestidigitacao, conhecimento, percepcao, persuasao, acrobacia, resistencia, investigacao, intuicao, enganacao,
+            habilidade, nivel_resonancia, sanidade, vida, tipo });
+        res.status(201).json({ message: 'ficha registrada com sucesso' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'erro interno no servidor' });
+    }
+});
