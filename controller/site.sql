@@ -28,7 +28,7 @@ create table fichas(
     vigor INT NOT NULL,
     medicina INT NOT NULL,
     sobrevivencia INT NOT NULL,
-    perfomance INT NOT NULL,
+    performance INT NOT NULL,
     intimidacao INT NOT NULL,
     prestidigitacao INT NOT NULL,
     conhecimento INT NOT NULL,
