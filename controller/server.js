@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const path = require ('path');
 const cors = require('cors');
 
+
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 console.log('O valor da chave secreta é:', process.env.JWT_SECRET);
@@ -36,6 +37,22 @@ app.get("/" , (req, res) => {
 app.listen( PORT , () =>{
     console.log( `site executando em: http://localhost:${PORT}` )
 } )
+
+function verificarToken(req, res, next) {
+    const authHeader = req.headers[authorization];
+    
+    const token = authHeader && authHeader.split(' ')[1];
+    
+
+    if (token == null) return res.status(401).json({ error: 'nenhum token foneciod' });
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
+        if (err) return res.status(403).json({ error: 'Token invalido ou expirado' });
+        req.usuario = usuario;
+        next();
+    })
+};
+
 
 app.post('/registrar', async (req, res, ) => {
     const { usuario, email, senha } = req.body;
@@ -94,8 +111,11 @@ app.post('/login', async (req, res) => {
 );
 
 
-app.post('/criar-personagem', async (req, res) => {
-    const {id_usuario, nome, aparencia, personalidade, historia, weapon_form, forca, destreza, constituicao, inteligencia, sabedoria, carisma, atletismo, furtividade, vigor,
+app.post('/criar-personagem', verificarToken, async (req, res) => {
+
+    const id_usuario = req.usuario.id;
+
+    const {nome, aparencia, personalidade, historia, weapon_form, forca, destreza, constituicao, inteligencia, sabedoria, carisma, atletismo, furtividade, vigor,
             medicina, sobrevivencia, performance, intimidacao, prestidigitacao, conhecimento, percepcao, persuasao, acrobacia, resistencia, investigacao, intuicao, enganacao,
             habilidade, nivel_resonancia, sanidade, vida, tipo} = req.body;
         if (!id_usuario){
