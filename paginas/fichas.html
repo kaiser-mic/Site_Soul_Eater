@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Login</title>
+    <title>Fichas</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/header.css">
+    <link rel="stylesheet" href="../Styles/footer.css">
     <link rel="stylesheet" href="../Styles/fichas.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,13 +25,249 @@
             </ul>
         </nav>
     </header>
-  <main>
-    <article>
-        <div class="text-box">
-            <a href="#" class="btn btn-white btn-        animate" onclick="enviar()">enviar ficha</a>
-        </div>
+    <main>
+        <article>
+            <h1>Criar ficha:</h1>
+            <form action="POST">
+                <section>
+                    <h2>Características:</h2>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <label for="aparencia">Aparencia:</label>
+                    <input type="text" id="aparencia" name="aparencia" required>
+                    <label for="personalidade">Personalidade:</label>
+                    <input type="text" id="personalidade" name="personalidade" required>
+                    <label for="historia">História:</label>
+                    <textarea for="historia" rows="5" cols="40" id="historia" name="historia" required></textarea>
+                    <label for="text">Weapon form:</label>
+                    <input type="text" id="weapon_form" name="weapon_form" required>
+                </section>
+                <section class="atributos">
+                    <h2>Atributos:</h2>
+                    <h3>Pontos: <strong id="limite">14</strong></h3>
+                    <div class="alinhar">
+                        <div>
+                            <label for="forca">Força</label>
+                            <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir('forca')">-</button>
+                            <input type="number" name="forca" id="forca" min="8" max="15" required value="8">
+                            <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar('forca')">+</button>
+                        </div> 
+                        <div>
+                            <label for="destreza">Destreza</label>
+                            <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir('destreza')">-</button>
+                            <input type="number" name="destreza" id="destreza" min="8" max="15" required value="8">
+                            <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar('destreza')">+</button>
+                        </div> 
+                        <div>
+                            <label for="constituicao">Constituicao</label>
+                            <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir('constituicao')">-</button>
+                            <input type="number" name="constituicao" id="constituicao" min="8" max="15" required value="8">
+                            <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar('constituicao')">+</button>
+                        </div> 
+                        <div>
+                            <label for="inteligencia">Inteligência</label>
+                            <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir('inteligencia')">-</button>
+                            <input type="number" name="inteligencia" id="inteligencia" min="8" max="15" required value="8">
+                            <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar('inteligencia')">+</button>
+                        </div> 
+                        <div>
+                            <label for="sabedoria">Sabedoria</label>
+                            <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir('sabedoria')">-</button>
+                            <input type="number" name="sabedoria" id="sabedoria" min="8" max="15" required value="8">
+                            <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar('sabedoria')">+</button>
+                        </div> 
+                        <div>
+                            <label for="carisma">Carisma</label>
+                            <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir('carisma')">-</button>
+                            <input type="number" name="carisma" id="carisma" min="8" max="15" required value="8">
+                            <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar('carisma')">+</button>
+                        </div> 
+                    </div>
+                    <button type="button" onclick="Calcular_atributos()" id="calcular_atributos">Calcular Atributos Adicionais</button>
+                </section>
+                <section class="atributos">
+                    <h2>Atributos Adicionais:</h2>
+                    <h3>Pontos: <strong id="limite_adicional">15</strong></h3>
+                    <div class="alinhar">
+                        <div>
+                            <label for="atletismo">Atletismo (FOR)</label>
+                            <div>
 
-    </article>
-  </main>
+                                <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir_adicional('atletismo')">-</button>
+                                <input type="number" name="atletismo" id="atletismo" min="0" max="5" required value="0">
+                                <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar_adicional('atletismo')">+</button>
+                            </div>
+                        </div> 
+                        <div>
+                            <label for="intimidacao">Intimidação (FOR)</label>
+                            <div>
+
+                                <button type="button" id="btnDiminuir" class="btn-controle" onclick="Diminuir_adicional('intimidacao')">-</button>
+                                <input type="number" name="intimidacao" id="intimidacao" min="0" max="5" required value="0">
+                                <button type="button" id="btnAumentar" class="btn-controle" onclick="Aumentar_adicional('intimidacao')">+</button>
+                            </div>
+                        </div> 
+                        <div>
+                            <label for="acrobacia">Acrobacia (DES)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('acrobacia')">-</button>
+                                <input type="number" name="acrobacia" id="acrobacia" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('acrobacia')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="furtividade">Furtividade (DES)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('furtividade')">-</button>
+                                <input type="number" name="furtividade" id="furtividade" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('furtividade')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="prestidigitacao">Prestidigitação (DES)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('prestidigitacao')">-</button>
+                                <input type="number" name="prestidigitacao" id="prestidigitacao" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('prestidigitacao')">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="vigor">Vigor (CON)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('vigor')">-</button>
+                                <input type="number" name="vigor" id="vigor" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('vigor')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="resistencia">Resistência (CON)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('resistencia')">-</button>
+                                <input type="number" name="resistencia" id="resistencia" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('resistencia')">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="conhecimento">Conhecimento (INT)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('conhecimento')">-</button>
+                                <input type="number" name="conhecimento" id="conhecimento" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('conhecimento')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="investigacao">Investigação (INT)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('investigacao')">-</button>
+                                <input type="number" name="investigacao" id="investigacao" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('investigacao')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="medicina">Medicina (INT)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('medicina')">-</button>
+                                <input type="number" name="medicina" id="medicina" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('medicina')">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="percepcao">Percepção (SAB)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('percepcao')">-</button>
+                                <input type="number" name="percepcao" id="percepcao" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('percepcao')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="intuicao">Intuição (SAB)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('intuicao')">-</button>
+                                <input type="number" name="intuicao" id="intuicao" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('intuicao')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="sobrevivencia">Sobrevivência (SAB)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('sobrevivencia')">-</button>
+                                <input type="number" name="sobrevivencia" id="sobrevivencia" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('sobrevivencia')">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="persuasao">Persuasão (CAR)</label>
+                            <div>
+
+                            </div>
+                            <button type="button" class="btn-controle" onclick="Diminuir_adicional('persuasao')">-</button>
+                            <input type="number" name="persuasao" id="persuasao" min="0" max="5" required value="0">
+                            <button type="button" class="btn-controle" onclick="Aumentar_adicional('persuasao')">+</button>
+                        </div>
+                        <div>
+                            <label for="enganacao">Enganação (CAR)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('enganacao')">-</button>
+                                <input type="number" name="enganacao" id="enganacao" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('enganacao')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="performance">Performance (CAR)</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('performance')">-</button>
+                                <input type="number" name="performance" id="performance" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('performance')">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="nivel_resonancia">Nível Resonância</label>
+                            <div>
+
+                                <button type="button" class="btn-controle" onclick="Diminuir_adicional('nivel_resonancia')">-</button>
+                                <input type="number" name="nivel_resonancia" id="nivel_resonancia" min="0" max="5" required value="0">
+                                <button type="button" class="btn-controle" onclick="Aumentar_adicional('nivel_resonancia')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Atributos finais</h2>
+                    <label for="vida">Vida:</label>
+                    <input type="number" id="vida" name="vida" required>
+                    <label for="sanidade">Sanidade:</label>
+                    <input type="number" id="sanidade" name="sanidade" required>
+                    <label for="habilidade">Habilidade:</label>
+                    <textarea for="habilidade" rows="5" cols="40" id="historia" name="habilidade" required></textarea>
+                </section>
+                <button type="submit" id="enviar">Enviar</button>
+            </form>
+        </article>
+        <script src="../controller/botoes.js"></script>
+    </main>
+    <footer>
+        <p>&copy; trabalho feito na cadeira de desenvolvimento de API's</p>
+        <p>Desenvolvido por Pedro Bavaresto e Nicolas Diovani</p>
+        <p><strong>Telefone: 42-42-564</strong></p>
+        <p>Contato: revan271205@gmail.com</p>
+        <p>Contato: nicolasdiovanioliveira@gmail.com</p>
+    </footer>
 </body>
 </html>

@@ -54,12 +54,14 @@ function criarPersonagem(event) {
             personalidade: document.getElementById("personalidade").value,
             historia: document.getElementById("historia").value,
             weapon_form: document.getElementById("weapon_form").value,
+            
             forca: document.getElementById("forca").value,
             destreza: document.getElementById("destreza").value,
             constituicao: document.getElementById("constituicao").value,
             inteligencia: document.getElementById("inteligencia").value,
             sabedoria: document.getElementById("sabedoria").value,
             carisma: document.getElementById("carisma").value,
+
             atletismo: document.getElementById("atletismo").value,
             furtividade: document.getElementById("furtividade").value,
             vigor: document.getElementById("vigor").value,
