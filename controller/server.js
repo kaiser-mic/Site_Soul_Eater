@@ -131,3 +131,23 @@ app.post('/criar-personagem', verificarToken, async (req, res) => {
         res.status(500).json({ error: 'erro interno no servidor' });
     }
 });
+
+app.get('/fichas', verificarToken, async (req, res) => {    
+
+    try{
+        const id_usuario = req.usuario.id
+
+        const fichasDoUsuario = await conn('fichas')
+        .where({ id_usuario: id_usuario })
+        .select('*')
+
+
+        res.status(200).json(fichasDoUsuario)
+    }
+    catch (error){
+        console.error(error)
+        res.status(500).json({ error: 'erro interno no servidor' });
+    }
+
+
+})

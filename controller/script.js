@@ -103,3 +103,47 @@ function criarPersonagem(event) {
 
         ajax.send(JSON.stringify(dadosPersonagem));
     }
+
+function exibirFicha(event) {
+    event.preventDefault();
+
+    const token = localStorage.getItem('authToken');
+
+    if (!token) {
+    alert("Você precisa estar logado para ver suas fichas!");
+    return; 
+    }
+    var ajax = new XMLHttpRequest();
+        
+    ajax.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            if (!this.responseText) {
+                alert("Erro: O servidor não enviou uma resposta.");
+                return;
+            }
+            const resposta = JSON.parse(this.responseText);
+
+        if(this.status == 200){
+            console.log("fichas recebidas:", resposta)
+           if (resposta.length > 0) {
+                    alert(`Você tem ${resposta.length} personagem(ns)!`);
+
+                    for (const ficha of resposta) {
+                        console.log(`--- Personagem: ${ficha.nome} ---`);
+                        console.log(`  - Tipo: ${ficha.tipo}, Vida: ${ficha.vida}`);
+                        console.log(`  - Atributos: Força ${ficha.forca}, Destreza ${ficha.destreza}, Inteligência ${ficha.inteligencia}`);
+                        console.log("  - Objeto completo da ficha:", ficha);
+                    }
+                } else {
+                    alert("Você ainda não tem nenhum personagem criado.");
+                }
+            } else {
+                alert("Erro ao buscar as fichas: " + resposta.error);
+            }
+        }
+    };
+
+    ajax.open("GET", "http://localhost:8001/fichas", true);
+    ajax.setRequestHeader("Authorization", "Bearer " + token);
+    ajax.send();
+}
