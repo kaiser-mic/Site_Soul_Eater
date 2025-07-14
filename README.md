@@ -3,8 +3,6 @@ Requisitos Funcionais: </br>
 RF_001: O site deve permitir o download do livro de regras ✅ <br/>
 RF_002: O site deve permitir o login ✅ </br> 
 RF_003: O site deve permitir a criação de fichas novas ✅ </br>
-RF_004: O site deve permitir a importação de fichas externas  </br>
-RF_005: O site deve permitir a realização de alteração nas fichas] </br>
 RF_006: O site deve salvar as fichas no banco de dados ✅ </br>
 RF_007 O site deve mostrar as fichas salvas quando o login for feito ✅</br>
 RF_008: O site deve permitir o login usando oAuth  </br>
