@@ -23,7 +23,6 @@ function login(event) {
             if (this.status == 200) {
                 alert(resposta.message); 
                 localStorage.setItem('authToken', resposta.token);
-                window.location.href = 'index.html';
             } else {
                 alert("Erro: " + resposta.error);
                 document.getElementById("login_nome").value = '';
