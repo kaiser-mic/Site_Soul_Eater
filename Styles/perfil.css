@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+main{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+article{
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('../imagens/banner.png');
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    gap: 20px;
+}
+article h1{
+    font-family: 'Eater', sans-serif;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+}
+#ficha-card{
+    width: 500px;
+    border: #feb403 solid 2px;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 10px auto;
+    margin-bottom: 40px;
+}
+#ficha-card h2{
+    text-align: center;
+    color: #feb403;
+}
+#ficha-card:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+#fichas-container strong{
+    color: white;
+}
+#fichas-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ficha-card #nome{
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+#ficha-card p,#ficha-card li{
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2em;
+    color: #feb403;
+    margin: 5px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.pericias li::marker, #ficha-card li::marker{
+    color: #f0f0f0;
+}
+#atributos{
+    margin-top: 10px;
+}
+#atributos li{
+    font-size: 1.2em;
+    margin: 5px 0;
+    margin-left: 20px;
+    list-style: circle;
+}
+.pericias{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+#atributos .principais{
+    color: white;
+    box-shadow: white;
+    font-weight: bold;
+}

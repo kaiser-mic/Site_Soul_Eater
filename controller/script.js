@@ -1,3 +1,4 @@
+window.addEventListener('DOMContentLoaded', exibirFicha);
 function registrar(){
     var nome = document.getElementById("registrar_nome").value
     var email = document.getElementById("registrar_email").value
@@ -121,41 +122,97 @@ function criarPersonagem(event) {
         ajax.send(JSON.stringify(dadosPersonagem));
     }
 
-function exibirFicha(event) {
-    event.preventDefault();
-
+function exibirFicha() {
     const token = localStorage.getItem('authToken');
-
     if (!token) {
-    alert("Você precisa estar logado para ver suas fichas!");
-    return; 
+        alert("Você precisa estar logado para ver suas fichas!");
+        window.location.href = 'login.html'; 
+        return; 
     }
-    var ajax = new XMLHttpRequest();
-        
+    var ajax = new XMLHttpRequest(); 
     ajax.onreadystatechange = function() {
-        if(this.readyState == 4) {
+        if (this.readyState == 4) {
             if (!this.responseText) {
                 alert("Erro: O servidor não enviou uma resposta.");
                 return;
             }
+            
             const resposta = JSON.parse(this.responseText);
 
-        if(this.status == 200){
-            console.log("fichas recebidas:", resposta)
-           if (resposta.length > 0) {
-                    alert(`Você tem ${resposta.length} personagem(ns)!`);
-
+            if (this.status == 200) {
+                console.log("Fichas recebidas do servidor:", resposta);
+                const container = document.getElementById('fichas-container');
+                container.innerHTML = '';
+                if (resposta.length > 0) {
                     for (const ficha of resposta) {
-                        console.log(`--- Personagem: ${ficha.nome} ---`);
-                        console.log(`  - Tipo: ${ficha.tipo}, Vida: ${ficha.vida}`);
-                        console.log(`  - Atributos: Força ${ficha.forca}, Destreza ${ficha.destreza}, Inteligência ${ficha.inteligencia}`);
-                        console.log("  - Objeto completo da ficha:", ficha);
+                        const fichaHTML = `
+                            <div id="ficha-card">
+                                <h2 id="nome">${ficha.nome}</h2>
+                                <p><strong>Aparência:</strong> ${ficha.aparencia}</p>
+                                <p><strong>Personalidade:</strong> ${ficha.personalidade}</p>
+                                <p><strong>Tipo:</strong> ${ficha.tipo}</p>
+                                <p><strong>Vida:</strong> ${ficha.vida}</p>
+                                <p><strong>Sanidade:</strong> ${ficha.sanidade}</p>
+                                <ul id="atributos">
+                                    <li>
+                                        <strong class="principais">Força:</strong> ${ficha.forca}
+                                        <ul class="pericias">
+                                            <li><strong>Atletismo:</strong> ${ficha.atletismo}</li>
+                                            <li><strong>Intimidação:</strong> ${ficha.intimidacao}</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong class="principais">Destreza:</strong> ${ficha.destreza}
+                                        <ul class="pericias">
+                                            <li><strong>Acrobacia:</strong> ${ficha.acrobacia}</li>
+                                            <li><strong>Furtividade:</strong> ${ficha.furtividade}</li>
+                                            <li><strong>Prestidigitação:</strong> ${ficha.prestidigitacao}</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong class="principais">Constituição:</strong> ${ficha.constituicao}
+                                        <ul class="pericias">
+                                            <li><strong>Vigor:</strong> ${ficha.vigor}</li>
+                                            <li><strong>Resistência:</strong> ${ficha.resistencia}</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong class="principais">Inteligência:</strong> ${ficha.inteligencia}
+                                        <ul class="pericias">
+                                            <li><strong>Conhecimento:</strong> ${ficha.conhecimento}</li>
+                                            <li><strong>Investigação:</strong> ${ficha.investigacao}</li>
+                                            <li><strong>Medicina:</strong> ${ficha.medicina}</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong class="principais">Sabedoria:</strong> ${ficha.sabedoria}
+                                        <ul class="pericias">
+                                            <li><strong>Percepção:</strong> ${ficha.percepcao}</li>
+                                            <li><strong>Intuição:</strong> ${ficha.intuicao}</li>
+                                            <li><strong>Sobrevivência:</strong> ${ficha.sobrevivencia}</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong class="principais">Carisma:</strong> ${ficha.carisma}
+                                        <ul class="pericias">
+                                            <li><strong>Persuasão:</strong> ${ficha.persuasao}</li>
+                                            <li><strong>Enganação:</strong> ${ficha.enganacao}</li>
+                                            <li><strong>Performance:</strong> ${ficha.performance}</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <p><strong>Aparência:</strong> ${ficha.aparencia}</p>
+                                <p><strong>Personalidade:</strong> ${ficha.personalidade}</p>
+                                <p><strong>Tipo:</strong> ${ficha.tipo}</p>
+                                <p><strong>Vida:</strong> ${ficha.vida}</p>
+                                <p><strong>Sanidade:</strong> ${ficha.sanidade}</p>
+                            </div>
+                        `;
+                        container.innerHTML += fichaHTML;
                     }
                 } else {
-                    alert("Você ainda não tem nenhum personagem criado.");
+                    container.innerHTML = '<p>Você ainda não tem nenhum personagem criado.</p>';
                 }
-            } else {
-                alert("Erro ao buscar as fichas: " + resposta.error);
             }
         }
     };
