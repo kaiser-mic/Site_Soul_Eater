@@ -112,6 +112,7 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/criar-personagem', verificarToken, async (req, res) => {
+    console.log("Dados recebidos do formulário:", req.body);
 
     const id_usuario = req.usuario.id;
 

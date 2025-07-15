@@ -1,3 +1,20 @@
+function registrar(){
+    var nome = document.getElementById("registrar_nome").value
+    var email = document.getElementById("registrar_email").value
+    var senha = document.getElementById("registrar_senha").value
+    
+    var ajax = new XMLHttpRequest()
+
+    ajax.onreadystatechange = function(){
+        if( this.readyState == 4 & this.status == 201){
+            alert( "Usuario " + nome + " cadastrado!")
+        }
+    }
+    ajax.open("POST" , "http://localhost:8001/registrar")
+    ajax.setRequestHeader("Content-type" , 
+            "application/x-www-form-urlencoded")
+    ajax.send("usuario=" + nome + "&email=" + email + "&senha=" + senha)
+}
 function login(event) { 
     event.preventDefault(); 
 

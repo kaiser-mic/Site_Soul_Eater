@@ -51,7 +51,7 @@ section input, section textarea{
     border: none;
     font-size: 20px;
 }
-section #historia{
+section #historia, #habilidade{
     height: 150px;
     padding-top: 10px;
 }

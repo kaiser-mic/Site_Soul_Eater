@@ -28,7 +28,7 @@
     <main>
         <article>
             <h1>Criar ficha:</h1>
-            <form method="post">
+            <form method="post" onsubmit="criarPersonagem(event)">
                 <section>
                     <h2>Características:</h2>
                     <label for="nome">Nome:</label>
@@ -254,8 +254,10 @@
                     <input type="number" id="vida" name="vida" required>
                     <label for="sanidade">Sanidade:</label>
                     <input type="number" id="sanidade" name="sanidade" required>
+                    <label for="tipo">Tipo:</label>
+                    <input type="number" id="tipo" name="tipo" required>
                     <label for="habilidade">Habilidade:</label>
-                    <textarea for="habilidade" rows="5" cols="40" id="historia" name="habilidade" required></textarea>
+                    <textarea for="habilidade" rows="5" cols="40" id="habilidade" name="habilidade" required></textarea>
                 </section>
                 <button type="submit" id="enviar">Enviar</button>
             </form>
