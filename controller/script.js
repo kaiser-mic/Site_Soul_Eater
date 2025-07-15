@@ -201,11 +201,8 @@ function exibirFicha() {
                                         </ul>
                                     </li>
                                 </ul>
-                                <p><strong>Aparência:</strong> ${ficha.aparencia}</p>
-                                <p><strong>Personalidade:</strong> ${ficha.personalidade}</p>
-                                <p><strong>Tipo:</strong> ${ficha.tipo}</p>
-                                <p><strong>Vida:</strong> ${ficha.vida}</p>
-                                <p><strong>Sanidade:</strong> ${ficha.sanidade}</p>
+                                <p><strong>habilidades:</strong> ${ficha.habilidade}</p>
+                                <p><strong>Nivel de resonancia:</strong> ${ficha.nivel_resonancia}</p>
                             </div>
                         `;
                         container.innerHTML += fichaHTML;
